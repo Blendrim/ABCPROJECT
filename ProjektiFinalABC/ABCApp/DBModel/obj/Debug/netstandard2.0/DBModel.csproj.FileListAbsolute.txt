@@ -1,0 +1,8 @@
+D:\Projects\ABCAPP\ABCApp\DBModel\bin\Debug\netstandard2.0\DBModel.deps.json
+D:\Projects\ABCAPP\ABCApp\DBModel\bin\Debug\netstandard2.0\DBModel.dll
+D:\Projects\ABCAPP\ABCApp\DBModel\obj\Debug\netstandard2.0\DBModel.csprojAssemblyReference.cache
+D:\Projects\ABCAPP\ABCApp\DBModel\obj\Debug\netstandard2.0\DBModel.AssemblyInfoInputs.cache
+D:\Projects\ABCAPP\ABCApp\DBModel\obj\Debug\netstandard2.0\DBModel.AssemblyInfo.cs
+D:\Projects\ABCAPP\ABCApp\DBModel\bin\Debug\netstandard2.0\DBModel.pdb
+D:\Projects\ABCAPP\ABCApp\DBModel\obj\Debug\netstandard2.0\DBModel.dll
+D:\Projects\ABCAPP\ABCApp\DBModel\obj\Debug\netstandard2.0\DBModel.pdb

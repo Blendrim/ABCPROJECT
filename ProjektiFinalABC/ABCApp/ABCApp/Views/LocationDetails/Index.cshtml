@@ -1,0 +1,210 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body>
+    <div class="modal fade" id="modalLocationDetailForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:675px;">
+                <div class="modal-header text-center">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body col-md-6">
+                    <div>
+                        <input type="hidden" name="locationIDMod" id="locationIDMod"><br>
+                    </div>
+
+                    <div>
+                        <label for="locationName"> Name:</label>
+                        <input type="text" name="locationNameMod" id="locationNameMod"><br>
+                    </div>
+
+                    <div>
+                        <label for="address"> Address:</label>
+                        <input type="text" name="addressMod" id="addressMod"><br>
+                    </div>
+
+
+                    <div>
+                        <label for="cityNameMod">Choose a City:</label>
+                        <select name="cityNameMod" id="cityNameMod">
+                            <option>Please select City...</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="longitudeIdMod"> Longitude:</label>
+                        <input type="text" id="longitudeIdMod" />
+                    </div>
+
+                    <div>
+                        <label for="latitudeIdMod">Latitude:</label>
+                        <input type="text" id="latitudeIdMod" />
+                    </div>
+
+
+
+                </div>
+
+
+
+                <div class="modal-footer d-flex justify-content-center">
+                    <button class="btn btn-primary" id="btnSaveLocationDetail" style="margin-right:400px">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2>Location Details</h2>
+
+    <div col-md-8>
+
+        <input type="hidden" id="locationId" value=@ViewBag.LocationId />
+
+        <input type="hidden" id="cityId" value=@ViewBag.CityId />
+
+
+        <input type="text" id="locationName" value=@ViewBag.LocationName />
+
+        <input type="text" id="address" value=@ViewBag.Address />
+
+        <input type="text" id="city" value=@ViewBag.City />
+
+        <input type="text" id="latitude" value=@ViewBag.Latitude />
+
+        <input type="text" id="longitude" value=@ViewBag.Longitude />
+
+
+        <button class="btn btn-primary" id="btnEditLocation">Edit</button>
+
+
+
+
+    </div>
+
+    <div class=" col-md-4">
+        <br />
+        <br />
+        <div id="dvMap" style="width: 500px; height: 400px ;margin-left:350px;"></div>
+    </div>
+
+
+
+    
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSaQ9ElHNqMEQ5aJekEzubRXIL18oGtaI"></script>
+    <script type="text/javascript">
+
+        window.onload = function () {
+            var mapOptions = {
+                center: new google.maps.LatLng(@ViewBag.Latitude, @ViewBag.Longitude),
+                zoom: 8,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var infoWindow = new google.maps.InfoWindow();
+            var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+
+        }
+    </script>
+
+
+</body>
+</html>
+
+@section scripts
+{
+    <script type="text/javascript">
+    fillCities();
+
+        $(document).ready(function ()
+        {
+            $('button[id=btnEditLocation]').click(function () {
+                $("#locationIDMod").val($("#locationId").val());
+                $("#locationNameMod").val($("#locationName").val());
+                $("#addressMod").val($("#address").val());
+                $('#cityNameMod').val($('#cityId').val()).attr("selected", "selected");
+                $("#longitudeIdMod").val($("#longitude").val());
+                $("#latitudeIdMod").val($("#latitude").val());
+
+                $("#modalLocationDetailForm").modal('show');
+
+
+            });
+
+            $('button[id=btnSaveLocationDetail]').click(function ()
+            {
+                 var locationFromControls =
+                    {
+                        LocationId: $('#locationIDMod').val(),
+                        Name: $('#locationNameMod').val(),
+                        Address: $("#addressMod").val(),
+                        CityId: $('#cityNameMod :selected').val(),
+                        Longitude: $('#longitudeIdMod').val(),
+                        Latitude: $('#latitudeIdMod').val(),
+
+
+                    }
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("SaveLocationDetails", "Location")',
+                        dataType: 'json',
+                        data: { l: locationFromControls },
+
+                        success: function (result) {
+                            alert("Location  saved successfully!");
+                            $('#modalLocationDetailForm').modal('hide');
+
+                            window.location.href = '/Location/Index/';
+
+
+                        }
+                    });
+
+            });
+
+
+
+
+
+
+
+
+        });
+                function fillCities() {
+                debugger;
+                $.ajax({
+                    type: "GET",
+                    url: '@Url.Action("GetAllCities", "Location")',
+                    dataType: 'json',
+                    success: function (result) {
+                        $(result.data).each(function () {
+                            var aa = result.data;
+                            var option = $('<option />');
+                            option.attr('value', this.cityId).text(this.name);
+
+                            $('#cityNameMod').append(option);
+                        });
+
+                    }
+                });
+
+            }
+
+
+
+    </script>
+
+}
+
+
+
+

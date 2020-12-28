@@ -1,0 +1,55 @@
+{
+  "ContextClassName": "AbctestassContext",
+  "ContextNamespace": null,
+  "DefaultDacpacSchema": null,
+  "FilterSchemas": false,
+  "IncludeConnectionString": true,
+  "ModelNamespace": null,
+  "OutputContextPath": null,
+  "OutputPath": null,
+  "ProjectRootNamespace": "DBModel",
+  "Schemas": null,
+  "SelectedHandlebarsLanguage": 0,
+  "SelectedToBeGenerated": 0,
+  "Tables": [
+    {
+      "HasPrimaryKey": true,
+      "Name": "[dbo].[AspNetRoles]"
+    },
+    {
+      "HasPrimaryKey": true,
+      "Name": "[dbo].[AspNetUserClaims]"
+    },
+    {
+      "HasPrimaryKey": true,
+      "Name": "[dbo].[AspNetUserLogins]"
+    },
+    {
+      "HasPrimaryKey": true,
+      "Name": "[dbo].[AspNetUserRoles]"
+    },
+    {
+      "HasPrimaryKey": true,
+      "Name": "[dbo].[AspNetUsers]"
+    },
+    {
+      "HasPrimaryKey": true,
+      "Name": "[dbo].[Cities]"
+    },
+    {
+      "HasPrimaryKey": true,
+      "Name": "[dbo].[Locations]"
+    }
+  ],
+  "UseDatabaseNames": false,
+  "UseDbContextSplitting": false,
+  "UseFluentApiOnly": true,
+  "UseHandleBars": false,
+  "UseInflector": false,
+  "UseLegacyPluralizer": false,
+  "UseNodaTime": false,
+  "UseSpatial": false,
+  "UseStoredProcedures": false
+}
+
+
